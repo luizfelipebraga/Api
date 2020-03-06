@@ -1,4 +1,5 @@
-﻿using Senai.InLock.WebApi.DataBaseFirst.Domains;
+﻿using Microsoft.EntityFrameworkCore;
+using Senai.InLock.WebApi.DataBaseFirst.Domains;
 using Senai.InLock.WebApi.DataBaseFirst.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Repositories
 
         public List<Estudios> Listar()
         {
-            return ctx.Estudios.ToList();
+           return  ctx.Estudios.Include(estudio => estudio.Jogos).ToList();
         }
     }
 }

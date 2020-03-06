@@ -39,6 +39,44 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Controllers
             return StatusCode(201);
         }
 
+        [HttpPut ("{id}")]
+        public IActionResult Put (int id,Jogos jogoAtualizado)
+        {
+            Jogos jogoBuscado = jogoRepository.BuscarPorId(id);
 
+            if(jogoBuscado != null)
+            {
+                try
+                {
+                    jogoRepository.Atualizar(id, jogoAtualizado);
+                    return NoContent(); 
+                }
+
+                catch (Exception erro)
+                {
+                    return BadRequest(erro);
+                }
+            }
+
+            return NotFound
+                    (
+                        new
+                        {
+                            mensagem = "Jogo não encontrado",
+                            erro = true
+                        }
+                    );
+                }
+        public IActionResult Delete (int id)
+        {
+            Jogos jogoDeletado = jogoRepository.BuscarPorId(id);
+
+            if(jogoDeletado != null )
+            {
+                jogoRepository.Deletar(id);
+                return Ok($"O jogo{id} foi deletado");
+            }
+            return NotFound($"O jogo não foi encontrado");
+        }
     }
 }

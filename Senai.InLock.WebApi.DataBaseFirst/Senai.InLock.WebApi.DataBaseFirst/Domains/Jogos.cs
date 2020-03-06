@@ -13,5 +13,6 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Domains
         public int? IdEstudio { get; set; }
 
         public Estudios IdEstudioNavigation { get; set; }
+
     }
 }
