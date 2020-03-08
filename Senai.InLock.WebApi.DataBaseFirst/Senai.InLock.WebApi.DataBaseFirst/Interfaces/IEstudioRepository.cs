@@ -13,5 +13,9 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Interfaces
         Estudios BuscarPorId(int id);
 
         void Cadastrar(Estudios novoEstudio);
+
+        void Atualizar(int id, Estudios estudioAtualizado);
+
+        void Deletar(int id);
     }
 }

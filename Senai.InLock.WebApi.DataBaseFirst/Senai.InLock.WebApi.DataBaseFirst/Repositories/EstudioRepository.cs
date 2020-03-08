@@ -28,5 +28,24 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Repositories
         {
            return  ctx.Estudios.Include(estudio => estudio.Jogos).ToList();
         }
+
+        public void Atualizar (int id, Estudios estudioAtualizado)
+        {
+            var entity = BuscarPorId(id);
+
+            if(entity != null)
+            {
+                entity.NomeEstudio = estudioAtualizado.NomeEstudio;
+            }
+
+            ctx.Estudios.Update(estudioAtualizado);
+            ctx.SaveChanges();
+        }
+
+        public void Deletar (int id)
+        {
+            ctx.Estudios.Remove(BuscarPorId(id));
+            ctx.SaveChanges();
+        }
     }
 }

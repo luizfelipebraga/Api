@@ -29,6 +29,14 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Repositories
 
         public void Atualizar(int id, TiposUsuario tipoAtualizado)
         {
+            var entity = BuscarPorId(id);
+
+            if(entity != null)
+            {
+                entity.Titulo = tipoAtualizado.Titulo;
+                entity.Usuarios = tipoAtualizado.Usuarios;
+            }
+
             ctx.TiposUsuario.Update(tipoAtualizado);
             ctx.SaveChanges();
         }

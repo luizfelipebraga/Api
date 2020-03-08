@@ -36,6 +36,7 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Repositories
                 entity.Email = usuarioAtualizado.Email;
                 entity.Senha = usuarioAtualizado.Senha;
                 entity.IdTipoUsuario = usuarioAtualizado.IdTipoUsuario;
+                
 
                 ctx.Usuarios.Update(usuarioAtualizado);
                 ctx.SaveChanges();

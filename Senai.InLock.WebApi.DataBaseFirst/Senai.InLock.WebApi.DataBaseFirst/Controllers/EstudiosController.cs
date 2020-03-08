@@ -38,5 +38,50 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Controllers
             estudioRepository.Cadastrar(novoEstudio);
             return StatusCode(201);
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            Estudios estudioDeletado = estudioRepository.BuscarPorId(id);
+
+            if(estudioDeletado != null)
+            {
+            estudioRepository.Deletar(id);
+            return Ok($"O Estúdio {id} foi deletado");
+               
+            }
+
+            return NotFound($"O Estúdio {id} não foi encontrado");
+
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Estudios estudioAtualizado)
+        {
+            Estudios estudioBuscado = estudioRepository.BuscarPorId(id);
+
+            if (estudioBuscado != null)
+            {
+                try
+                {
+                    estudioRepository.Atualizar(id, estudioAtualizado);
+                    return NoContent();
+                }
+
+                catch (Exception erro)
+                {
+                    return BadRequest(erro);
+                }
+            }
+
+            return NotFound
+                    (
+                        new
+                        {
+                            mensagem = "Estudio não encontrado",
+                            erro = true
+                        }
+                    );
+        }
     }
 }

@@ -30,6 +30,16 @@ namespace Senai.InLock.WebApi.DataBaseFirst.Repositories
 
         public void Atualizar (int id, Jogos jogoAtualizado)
         {
+            var entity = BuscarPorId(id);
+
+            if(entity != null)
+            {
+                entity.DataLancamento = jogoAtualizado.DataLancamento;
+                entity.Descricao = jogoAtualizado.Descricao;
+                entity.IdEstudio = jogoAtualizado.IdEstudio;
+                entity.NomeJogo = jogoAtualizado.NomeJogo;
+                entity.Valor = jogoAtualizado.Valor;
+            }
             ctx.Jogos.Update(jogoAtualizado);
             ctx.SaveChanges();
         }
