@@ -17,7 +17,7 @@ namespace Senai.InLock.WebApi.Domains
         public string Descricao { get; set; }
 
         [DataType(DataType.DateTime)]
-        [Required(ErrorMessage = "Insira uma data")]
+        [Required(ErrorMessage = "Insira uma data")] 
         public DateTime DataLancamento { get; set; }
 
         public float Valor { get; set; }
